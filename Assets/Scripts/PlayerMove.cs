@@ -31,10 +31,12 @@ public class PlayerMove : MonoBehaviour
             direction += transform.right;
         }
 
-        if (Keyboard.current[Key.Space].isPressed)
+        /*
+        if (Keyboard.current[Key.Space].wasPressedThisFrame)
         {
-            rb.AddForce(Vector3.up * 10, ForceMode.Impulse);
+            rb.AddForce(Vector3.up * 6, ForceMode.Impulse);
         }
+        */
 
         direction = Vector3.ClampMagnitude(direction, 1f);
 
