@@ -4,18 +4,18 @@ using UnityEngine.InputSystem;
 public class PlayerMove : MonoBehaviour
 {
     private float speed = 10f;
+    private Vector3 direction;
 
     public Rigidbody rb;
 
-    private void FixedUpdate()
+    void Update()
     {
-        Vector3 direction = Vector3.zero;
+        direction = Vector3.zero;
 
-        if (Keyboard.current[Key.W].isPressed)
+            if (Keyboard.current[Key.W].isPressed)
         {
             direction += transform.forward;
         }
-
         if (Keyboard.current[Key.S].isPressed)
         {
             direction -= transform.forward;
@@ -31,15 +31,12 @@ public class PlayerMove : MonoBehaviour
             direction += transform.right;
         }
 
-        /*
-        if (Keyboard.current[Key.Space].wasPressedThisFrame)
-        {
-            rb.AddForce(Vector3.up * 6, ForceMode.Impulse);
-        }
-        */
-
         direction = Vector3.ClampMagnitude(direction, 1f);
+    }
 
-        rb.linearVelocity = new Vector3(direction.x * speed, rb.linearVelocity.y, direction.z * speed);
+    private void FixedUpdate()
+    {
+        rb.linearVelocity = new Vector3(direction.x * speed,
+        rb.linearVelocity.y, direction.z * speed);
     }
 }
